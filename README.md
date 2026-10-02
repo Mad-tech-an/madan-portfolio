@@ -1,13 +1,14 @@
 # madan-portfolio
 Personal portfolio website showcasing my skills, projects, education, and experience in IT Support, Network Administration, Systems, and Cybersecurity.
 
-Tech Stack
+Tech Stack:
 HTML5
 CSS3
 JavaScript
 Git & GitHub
 GitHub Pages
-Features
+
+Features:
 Responsive design
 Dark / light mode
 Interactive project filtering
