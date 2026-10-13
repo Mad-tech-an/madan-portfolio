@@ -420,8 +420,8 @@ button {
    ========================================================= */
 
 .avatar {
-  width: 96px;
-  height: 96px;
+  width: 180px;
+  height: 180px;
 
   display: flex;
   align-items: flex-start;
@@ -576,8 +576,8 @@ button {
 }
 
 .chip-support {
-  bottom: 13%;
-  left: 6%;
+  bottom: 8%;
+  left: -3%;
   animation-delay: -3s;
 }
 
@@ -1817,5 +1817,346 @@ button {
   .reveal {
     opacity: 1;
     transform: none;
+  }
+}
+
+/* =========================================================
+   PROJECT 01 — NETWORK LAB
+   Animated grid, ambient glow and travelling data packets
+   ========================================================= */
+
+.art-network {
+  isolation: isolate;
+  background-color: #101b31;
+  background-image:
+    linear-gradient(rgba(95, 151, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(95, 151, 255, 0.055) 1px, transparent 1px),
+    radial-gradient(ellipse at 50% 55%, #1a3154 0%, #101b31 72%);
+  background-size: 28px 28px, 28px 28px, auto;
+  animation: network-grid-move 18s linear infinite;
+}
+
+.art-network::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(0, 234, 255, 0.17),
+    transparent 65%
+  );
+  animation: network-glow-breathe 5s ease-in-out infinite alternate;
+}
+
+.art-network .art-label,
+.art-network .network-map {
+  z-index: 1;
+}
+
+.art-network .network-map {
+  position: relative;
+}
+
+.art-network .network-map i {
+  animation: network-node-glow 3s ease-in-out infinite;
+}
+
+.art-network .network-map i:nth-of-type(2) {
+  animation-delay: 0.4s;
+}
+
+.art-network .network-map i:nth-of-type(3) {
+  animation-delay: 0.8s;
+}
+
+.art-network .network-map i:nth-of-type(4) {
+  animation-delay: 1.2s;
+}
+
+.art-network .network-map b {
+  position: relative;
+  display: block;
+  flex: 0 0 17px;
+  overflow: visible;
+}
+
+.art-network .network-map b::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #a5ffff;
+  box-shadow: 0 0 8px #00eaff, 0 0 15px #00aaff;
+  transform: translate(-50%, -50%);
+  animation: network-packet 2.4s ease-in-out infinite;
+}
+
+.art-network .network-map b:nth-of-type(2)::after {
+  animation-delay: 0.8s;
+}
+
+.art-network .network-map b:nth-of-type(3)::after {
+  animation-delay: 1.6s;
+}
+
+@keyframes network-grid-move {
+  from {
+    background-position: 0 0, 0 0, center;
+  }
+  to {
+    background-position: 28px 28px, 28px 28px, center;
+  }
+}
+
+@keyframes network-glow-breathe {
+  from {
+    opacity: 0.45;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes network-node-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(0, 234, 255, 0);
+  }
+  50% {
+    box-shadow:
+      0 0 13px rgba(0, 234, 255, 0.25),
+      inset 0 0 9px rgba(0, 234, 255, 0.1);
+  }
+}
+
+@keyframes network-packet {
+  0% {
+    left: 0;
+    opacity: 0;
+  }
+  15%, 80% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+
+/* =========================================================
+   PROJECT 03 — SYSTEMS ADMIN
+   Moving scan beam and active server status lights
+   ========================================================= */
+
+.art-systems {
+  isolation: isolate;
+  background:
+    radial-gradient(
+      ellipse at 50% 55%,
+      rgba(0, 225, 210, 0.12),
+      transparent 65%
+    ),
+    linear-gradient(135deg, #132b35, #10182a);
+}
+
+.art-systems::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: -45%;
+  left: 0;
+  width: 100%;
+  height: 38%;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(0, 240, 220, 0.04) 20%,
+    rgba(0, 240, 220, 0.2) 50%,
+    rgba(0, 240, 220, 0.04) 80%,
+    transparent
+  );
+  animation: systems-scan-beam 6s ease-in-out infinite;
+}
+
+.art-systems .server-stack {
+  z-index: 1;
+}
+
+.art-systems .server-stack i {
+  animation: server-status-glow 3s ease-in-out infinite;
+}
+
+.art-systems .server-stack i:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.art-systems .server-stack i:nth-child(3) {
+  animation-delay: 1s;
+}
+
+.art-systems .server-stack i::before {
+  animation: server-led-pulse 2s ease-in-out infinite;
+}
+
+.art-systems .server-stack i:nth-child(2)::before {
+  animation-delay: 0.5s;
+}
+
+.art-systems .server-stack i:nth-child(3)::before {
+  animation-delay: 1s;
+}
+
+@keyframes systems-scan-beam {
+  0%, 10% {
+    top: -45%;
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.75;
+  }
+  100% {
+    top: 115%;
+    opacity: 0;
+  }
+}
+
+@keyframes server-status-glow {
+  0%, 100% {
+    border-color: rgba(120, 228, 210, 0.65);
+    box-shadow: 0 0 0 transparent;
+  }
+  50% {
+    border-color: #78e4d2;
+    box-shadow:
+      0 0 12px rgba(0, 240, 220, 0.13),
+      inset 0 0 10px rgba(0, 240, 220, 0.05);
+  }
+}
+
+@keyframes server-led-pulse {
+  0%, 100% {
+    opacity: 0.65;
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.5);
+  }
+}
+
+
+/* Respect reduced-motion preferences */
+
+@media (prefers-reduced-motion: reduce) {
+  .art-network,
+  .art-network::before,
+  .art-network .network-map i,
+  .art-network .network-map b::after,
+  .art-systems::before,
+  .art-systems .server-stack i,
+  .art-systems .server-stack i::before {
+    animation: none !important;
+  }
+}
+
+/* Network Lab — compact icons and full labels; keep original animation */
+
+.art-network .network-map {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: calc(100% - 36px);
+  max-width: 500px;
+  margin-top: 18px;
+}
+
+.art-network .network-map i.network-device {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 76px;
+  padding: 9px 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-style: normal;
+  text-align: center;
+  color: var(--accent);
+  background: rgba(16, 44, 58, 0.78);
+  border: 1px solid rgba(120, 228, 210, 0.8);
+  border-radius: 9px;
+  box-shadow: 0 0 0 rgba(120, 228, 210, 0);
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.art-network .network-device svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.art-network .network-device span {
+  display: block;
+  color: var(--accent);
+  font: 500 11px/1.3 var(--font);
+  white-space: nowrap;
+}
+
+.art-network .network-map b {
+  position: relative;
+  display: block;
+  flex: 0 0 17px;
+  width: 17px;
+  height: 1px;
+  overflow: visible;
+  background: var(--accent);
+}
+
+.art-network .network-map i.network-device:hover {
+  border-color: #a5ffff;
+  background: rgba(20, 58, 70, 0.95);
+}
+
+@media (max-width: 420px) {
+  .art-network .network-map {
+    width: calc(100% - 24px);
+    gap: 5px;
+  }
+
+  .art-network .network-map i.network-device {
+    min-height: 70px;
+    padding: 7px 2px;
+  }
+
+  .art-network .network-device svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .art-network .network-device span {
+    font-size: 9px;
+  }
+
+  .art-network .network-map b {
+    flex-basis: 9px;
+    width: 9px;
   }
 }
